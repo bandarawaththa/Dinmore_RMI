@@ -1,0 +1,66 @@
+DROP DATABASE Dinmore;
+CREATE DATABASE Dinmore;
+USE Dinmore;
+
+DROP TABLE IF EXISTS TelOperators;
+CREATE TABLE TelOperators (
+    ID int AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    UName VARCHAR(50) NOT NULL,
+    PW VARCHAR(50) NOT NULL,
+    Salt VARCHAR(50) NOT NULL
+);
+
+INSERT INTO TelOperators(UName,PW,Salt) VALUES("TO1","lpBTLZ8d7T27GxiifbGxS9zMNcHMryaAffjjzviT8vM=","gNJWyeIzLE4Nsj1dMPbEvgHLL2KA8z");
+INSERT INTO TelOperators(UName,PW,Salt) VALUES("TO2","lpBTLZ8d7T27GxiifbGxS9zMNcHMryaAffjjzviT8vM=","gNJWyeIzLE4Nsj1dMPbEvgHLL2KA8z");
+
+DROP TABLE IF EXISTS Customers;
+CREATE TABLE Customers (
+    ID int AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    Name VARCHAR(50) NOT NULL,
+    Contact int NOT NULL,
+    Address VARCHAR(80) NOT NULL
+);
+
+INSERT INTO Customers(Name,Contact,Address) VALUES("Customer one",0112233441,"Customer/1, s, address");
+INSERT INTO Customers(Name,Contact,Address) VALUES("Customer two",0112233442,"Customer/2, s, address");
+INSERT INTO Customers(Name,Contact,Address) VALUES("Customer three",0112233443,"Customer/3, s, address");
+INSERT INTO Customers(Name,Contact,Address) VALUES("Customer four",0112233444,"Customer/4, s, address");
+INSERT INTO Customers(Name,Contact,Address) VALUES("Customer five",0112233445,"Customer/5, s, address");
+
+DROP TABLE IF EXISTS Cheffs;
+CREATE TABLE Cheffs (
+    ID int AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    UName VARCHAR(50) NOT NULL,
+    PW VARCHAR(50) NOT NULL,
+    Salt VARCHAR(50) NOT NULL
+);
+
+INSERT INTO Cheffs(UName,PW,Salt) VALUES("Cheff 1","lpBTLZ8d7T27GxiifbGxS9zMNcHMryaAffjjzviT8vM=","gNJWyeIzLE4Nsj1dMPbEvgHLL2KA8z");
+INSERT INTO Cheffs(UName,PW,Salt) VALUES("Cheff 2","lpBTLZ8d7T27GxiifbGxS9zMNcHMryaAffjjzviT8vM=","gNJWyeIzLE4Nsj1dMPbEvgHLL2KA8z");
+
+DROP TABLE IF EXISTS Orders;
+CREATE TABLE Orders (
+    ID int AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    CusID int NOT NULL,
+    OperatorID int NOT NULL,
+    CheffID int NOT NULL,
+    QTY int NOT NULL,
+    AddOrderTime VARCHAR(50),
+    StartTime VARCHAR(50),
+    EndTime VARCHAR(50),
+    CheffTime int,
+    Date VARCHAR(50),
+    CONSTRAINT FOREIGN KEY (CusID) REFERENCES Customers (ID),
+    CONSTRAINT FOREIGN KEY (OperatorID) REFERENCES TelOperators (ID),
+    CONSTRAINT FOREIGN KEY (CheffID) REFERENCES Cheffs (ID)
+);
+
+DROP TABLE IF EXISTS Managers;
+CREATE TABLE Managers (
+    ID int AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    UName VARCHAR(50) NOT NULL,
+    PW VARCHAR(50) NOT NULL,
+    Salt VARCHAR(50) NOT NULL
+);
+
+INSERT INTO Managers(UName,PW,Salt) VALUES("charaka","lpBTLZ8d7T27GxiifbGxS9zMNcHMryaAffjjzviT8vM=","gNJWyeIzLE4Nsj1dMPbEvgHLL2KA8z");
